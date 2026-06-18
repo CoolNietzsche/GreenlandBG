@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --color-forest: #1A5C2E;
+  --color-forest-dark: #0F3D1E;
+  --color-forest-light: #2D8247;
+  --color-gold: #C8972B;
+  --color-gold-light: #DFAC3D;
+  --color-gold-dark: #A5771A;
+  --color-brand-gray: #F7F7F5;
+  --color-brand-charcoal: #151815;
+}
+
+/* Custom scrollbar matching brand identity */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #151815;
+}
+::-webkit-scrollbar-thumb {
+  background: #1A5C2E;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8972B;
+}
+
+/* Background grid patterns */
+.forest-grid-pattern {
+  background-image: linear-gradient(rgba(26, 92, 46, 0.95), rgba(15, 61, 30, 0.98)),
+                    radial-gradient(circle at 50% 50%, rgba(200, 151, 43, 0.15) 1px, transparent 1px);
+  background-size: 100% 100%, 40px 40px;
+}
+
+.subtle-line-accent {
+  position: relative;
+}
+.subtle-line-accent::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #C8972B;
+}
