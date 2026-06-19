@@ -32,8 +32,9 @@
 /* Background grid patterns */
 .forest-grid-pattern {
   background-image: linear-gradient(rgba(26, 92, 46, 0.95), rgba(15, 61, 30, 0.98)),
-                    radial-gradient(circle at 50% 50%, rgba(200, 151, 43, 0.15) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px;
+                    repeating-linear-gradient(45deg, rgba(200, 151, 43, 0.04) 0px, rgba(200, 151, 43, 0.04) 1px, transparent 1px, transparent 10px),
+                    radial-gradient(circle at 50% 50%, rgba(200, 151, 43, 0.10) 1px, transparent 1px);
+  background-size: 100% 100%, 14px 14px, 28px 28px;
 }
 
 .subtle-line-accent {

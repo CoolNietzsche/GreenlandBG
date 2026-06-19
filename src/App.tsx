@@ -28,6 +28,14 @@ import {
   BookOpen
 } from "lucide-react";
 
+// Custom imported Greenland components
+import { SpecSheet } from "./components/SpecSheet";
+import { ServicesSection } from "./components/ServicesSection";
+import { WhoWeServe } from "./components/WhoWeServe";
+import { KeyBuyers } from "./components/KeyBuyers";
+import { BuyerTestimonials } from "./components/BuyerTestimonials";
+import { CertificationsSection } from "./components/CertificationsSection";
+
 // Types for structural safety
 interface Stat {
   label: string;
@@ -113,14 +121,14 @@ export default function App() {
   const [lang, setLang] = useState<"en" | "am">("en");
 
   // Interactive inquiry state
-  const [selectedInquirySubject, setSelectedInquirySubject] = useState<string>("Export Inquiry");
+  const [selectedInquirySubject, setSelectedInquirySubject] = useState<string>("Export Inquiry — Seeds, Tiratere & Oilseeds");
   const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
   const [formData, setFormData] = useState({
     fullName: "",
     companyName: "",
     email: "",
     phone: "",
-    subject: "Export Inquiry",
+    subject: "Export Inquiry — Seeds, Tiratere & Oilseeds",
     message: ""
   });
 
@@ -238,7 +246,7 @@ export default function App() {
       companyName: "",
       email: "",
       phone: "",
-      subject: "Export Inquiry",
+      subject: "Export Inquiry — Seeds, Tiratere & Oilseeds",
       message: ""
     });
     setFormSubmitted(false);
@@ -302,7 +310,7 @@ export default function App() {
       companyName: "",
       email: "",
       phone: "",
-      subject: "Export Inquiry",
+      subject: "Export Inquiry — Seeds, Tiratere & Oilseeds",
       message: prefilledMessage
     });
 
@@ -372,7 +380,7 @@ export default function App() {
     }
   ];
 
-  // Deep dive product exports with Amharic bilingual objects (replacing 'tiratere' word entirely)
+  // Deep dive product exports with Amharic bilingual objects
   const exportItems: ExportItem[] = [
     {
       id: "seeds",
@@ -1007,6 +1015,30 @@ export default function App() {
         </div>
       </section>
 
+      {/* OUR SERVICES & BENEFITS */}
+      <section id="services-benefits" className="py-24 px-4 bg-brand-gray text-brand-charcoal relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-xs font-sans font-bold tracking-widest text-[#1A5C2E] uppercase inline-block mb-3">
+              {lang === "en" ? "OUR CORPORATE ENGAGEMENTS" : "የኩባንያችን አገልግሎቶች እና ዋስትናዎች"}
+            </span>
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A5C2E] mb-4">
+              {lang === "en" ? "Our Services & Benefits" : "አገልግሎቶች እና ጥቅሞች"}
+            </h2>
+            <div className="w-24 h-0.5 bg-[#C8972B] mx-auto mb-4"></div>
+            <p className="max-w-xl mx-auto text-gray-650 text-xs sm:text-sm leading-relaxed">
+              {lang === "en"
+                ? "Every transaction is executed with localized checking and deep international compliance."
+                : "በሀገር ውስጥና በውጭ ሀገር የሚከናወኑ የንግድ ስራዎችን ከዓለም አቀፍ የኮምፕሊያንስ ህጎች ጋር እናስማማለን።"}
+            </p>
+          </div>
+
+          <ScrollReveal>
+            <ServicesSection lang={lang} />
+          </ScrollReveal>
+        </div>
+      </section>
+
       {/* EXPORT PRODUCTS DEEP DIVE */}
       <section id="export" className="py-24 px-4 bg-forest-dark text-white relative">
         <div className="max-w-7xl mx-auto">
@@ -1024,6 +1056,10 @@ export default function App() {
                 : "ታዋቂ የኢትዮጵያ ምርቶችን በጥራት አጽድተን፣ አሽገን ለዓለም አቀፍ የጤና ጥበቃ መስፈርት በሚመጥን መልኩ እናቀርባለን።"}
             </p>
           </div>
+
+          <ScrollReveal>
+            <WhoWeServe lang={lang} />
+          </ScrollReveal>
 
           {/* Two large cards side-by-side with scroll anim */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -1096,6 +1132,28 @@ export default function App() {
                 </div>
               </ScrollReveal>
             ))}
+          </div>
+
+          {/* Premium Product Specification Sheets */}
+          <div className="mt-24 border-t border-white/10 pt-16">
+            <div className="text-center mb-12">
+              <span className="text-xs font-sans font-semibold tracking-widest text-[#C8972B] uppercase inline-block mb-3">
+                {lang === "en" ? "TECHNICAL SPECIFICATION DIRECTORY" : "የምርት ጥራት ደረጃ መግለጫዎች"}
+              </span>
+              <h3 className="font-serif text-2xl sm:text-3.5xl font-bold text-white tracking-tight">
+                {lang === "en" ? "Product Specification Sheets" : "የምርት ጥራት እና ዝርዝር መግለጫዎች"}
+              </h3>
+              <p className="text-xs text-gray-300 mt-2 max-w-sm mx-auto">
+                {lang === "en"
+                  ? "Standard chemical purity indices, moisture scales, and packaging formats for each commodity line."
+                  : "ለእያንዳንዱ ምርት ዋና የላቦራቶሪ ንፅህና ደረጃዎች ፣ የእርጥበት መጠን እና የአሸጋገግ መለኪያዎች ዝርዝር መግለጫ።"}
+              </p>
+              <div className="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
+            </div>
+
+            <ScrollReveal>
+              <SpecSheet lang={lang} />
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -1237,27 +1295,26 @@ export default function App() {
       <section id="import" className="py-24 px-4 bg-white text-brand-charcoal">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-sans font-bold tracking-widest text-gold uppercase inline-block mb-3">
+            <span className="text-xs font-sans font-bold tracking-widest text-[#C8972B] uppercase inline-block mb-3">
               {lang === "en" ? "INWARD INDUSTRIAL & SOLAR SOLUTIONS" : "ከውጭ የሚገቡ የኢንዱስትሪ እና የሶላር መፍትሄዎች"}
             </span>
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest mb-4">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1A5C2E] mb-4">
               {lang === "en" ? "Import Solutions" : "የማስመጣት መፍትሄዎች"}
             </h2>
-            <div className="w-24 h-0.5 bg-gold mx-auto mb-4"></div>
+            <div className="w-24 h-0.5 bg-[#C8972B] mx-auto mb-4"></div>
             <p className="max-w-xl mx-auto text-gray-600 text-xs sm:text-sm leading-relaxed">
               {lang === "en"
-                ? "Importing heavy systems, solar solutions, and precision-engineered cold storage hardware directly to developers and organizations in Ethiopia."
-                : "ከፍተኛ ጥራት ያላቸውን የኢንዱስትሪ ማሽኖችን፣ የሶላር የውሃ ፓምፖችን እና የቀዝቃዛ ክፍል ዕቃዎችን በቀጥታ አስመጥተን እንተክላለን።"}
+                ? "Importing heavy machinery systems, commercial solar water pumps, and precision Modular Cold Logistics networks directly to developers under the trade desks."
+                : "ከፍተኛ ጥራት ያላቸውን የኢንዱስትሪ ማሽኖችን፣ የሶላር የውሃ ፓምፖችን እና የቀዝቃዛ ክፍል መጋዘኖችን በቀጥታ አስመጥተን እንተክላለን።"}
             </p>
           </div>
 
-          {/* Three cards layout with scroll revealing */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {importItems.map((item, idx) => (
               <ScrollReveal key={item.id} delay={idx * 150}>
-                <div className="bg-brand-gray border border-gray-200 hover:border-gold rounded p-8 h-full flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300">
+                <div className="bg-brand-gray border border-gray-150 hover:border-gold rounded p-8 h-full flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300">
                   <div>
-                    <span className="text-[9px] font-mono tracking-widest text-forest font-bold bg-forest/5 border border-forest/15 px-2.5 py-1 rounded inline-block mb-4">
+                    <span className="text-[9px] font-mono tracking-widest text-forest font-bold bg-forest/5 border border-[#1A5C2E]/15 px-2.5 py-1 rounded inline-block mb-4">
                       {lang === "en" ? `SOLUTIONS DIVISION 0${idx + 1}` : `መለኪያ 0${idx + 1}`}
                     </span>
                     
@@ -1269,12 +1326,12 @@ export default function App() {
                       "{lang === "en" ? item.intro.en : item.intro.am}"
                     </p>
 
-                    <p className="text-gray-750 text-xs sm:text-sm leading-relaxed mb-6">
+                    <p className="text-gray-650 text-xs sm:text-sm leading-relaxed mb-6">
                       {lang === "en" ? item.description.en : item.description.am}
                     </p>
 
-                    {/* Component specification blocks */}
-                    <div className="space-y-3 mb-6 bg-white/65 p-4 border border-gray-150 rounded">
+                    {/* Component specs and metrics */}
+                    <div className="space-y-3 mb-6 bg-white/70 p-4 border border-gray-150 rounded">
                       {item.specs.map((spec, specIdx) => (
                         <div key={specIdx} className="text-xs">
                           <span className="text-[10px] font-bold text-gray-400 block uppercase">
@@ -1285,12 +1342,11 @@ export default function App() {
                       ))}
                     </div>
 
-                    {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-8">
                       {item.tags.map((tag, tagIdx) => (
                         <span
                           key={tagIdx}
-                          className="text-[10px] font-semibold text-forest-dark bg-forest/10 px-2 py-0.5 rounded"
+                          className="text-[10px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-100"
                         >
                           {lang === "en" ? tag.en : tag.am}
                         </span>
@@ -1300,7 +1356,7 @@ export default function App() {
 
                   <button
                     onClick={(e) => triggerEnquiry("Import Inquiry", lang === "en" ? item.title.en : item.title.am, e)}
-                    className="border border-forest hover:bg-forest hover:text-white text-forest text-xs font-extrabold uppercase tracking-widest py-3.5 px-4 rounded transition-all duration-300 w-full text-center flex items-center justify-center gap-1"
+                    className="border border-[#1A5C2E] hover:bg-[#1A5C2E] hover:text-white text-[#1A5C2E] text-xs font-extrabold uppercase tracking-widest py-3.5 px-4 rounded transition-all duration-300 w-full text-center flex items-center justify-center gap-1"
                   >
                     <span>{lang === "en" ? "Request Import Terms" : "የገቢ ዕቃዎችን ማብራሪያ ጠይቅ"}</span>
                     <ChevronRight className="w-3.5 h-3.5" />
@@ -1316,7 +1372,7 @@ export default function App() {
       <section id="solutions" className="py-24 px-4 bg-brand-gray text-brand-charcoal">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <span className="text-xs font-sans font-bold tracking-widest text-gold uppercase inline-block mb-3">
+            <span className="text-xs font-sans font-bold tracking-widest text-[#1A5C2E] uppercase inline-block mb-3">
               {lang === "en" ? "STRATEGIC COMPETITIVE STRENGTHS" : "የኩባንያው ጥንካሬዎች"}
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-forest mb-4">
@@ -1363,9 +1419,9 @@ export default function App() {
               }
             ].map((feature, idx) => (
               <ScrollReveal key={idx} delay={idx * 150}>
-                <div className="bg-white border border-gray-150 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-300 flex items-start gap-4 h-full">
+                <div className="bg-white border border-gray-150 p-8 rounded-lg shadow-sm hover:shadow-md transition-all duration-305 flex items-start gap-4 h-full">
                   <div className="p-3 bg-[#1A5C2E]/5 rounded-lg border border-[#1A5C2E]/10 shrink-0">
-                    {feature.icon}
+                    {feature.icon || <Award className="w-6 h-6 text-gold" />}
                   </div>
                   <div>
                     <h3 className="font-serif text-lg font-bold text-forest mb-2">
@@ -1434,77 +1490,29 @@ export default function App() {
               </p>
             </div>
           </ScrollReveal>
+        </div>
+      </section>
 
-          {/* INTERACTIVE EXPANSION COMPONENT: CERTIFICATIONS VIEWER DRAWER */}
-          <ScrollReveal delay={150}>
-            <div className="mt-8 bg-white border border-gray-150 rounded-lg p-6 max-w-4xl mx-auto shadow-sm">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-gray-100 pb-4 mb-4">
-                <div>
-                  <h4 className="font-serif text-lg font-bold text-forest">
-                    {lang === "en" ? "Verify Greenland Global Certifications" : "የግሪንላንድ የጥራት ምስክር ወረቀቶች"}
-                  </h4>
-                  <p className="text-xs text-gray-500">
-                    {lang === "en" ? "Click any verified certification seal to view compliance standards and references." : "መስፈርቶቹን ለማየት ከታች ያሉትን የዕፅዋትና ማሽን ማስረጃዎች ይጫኑ።"}
-                  </p>
-                </div>
-                <div className="flex gap-2">
-                  <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-1 rounded inline-flex items-center gap-1">
-                    <Check className="w-3 h-3" /> ISO 9001:2015 Approved
-                  </span>
-                </div>
-              </div>
-
-              {/* Grid of Certifications */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                {[
-                  {
-                    id: "phytosanitary",
-                    title: "Phytosanitary Safety",
-                    authority: "Ethiopian Ministry of Agriculture",
-                    framework: "Zero-fumigation chemical trace, 100% natural highland protection indices. Meets EFSA (European Food Safety Authority) thresholds."
-                  },
-                  {
-                    id: "standards",
-                    title: "Industrial Standards",
-                    authority: "Ethiopian Standards Agency (ESA)",
-                    framework: "Certified machinery import guidelines, electric transformer safety grids, solar pump multi-stage pressure checks."
-                  },
-                  {
-                    id: "chamber",
-                    title: "Chamber Registry",
-                    authority: "Addis Ababa Chamber of Commerce",
-                    framework: "Active verified gold exporter register. Long-standing international financial letter-of-credit security clearances."
-                  }
-                ].map((cert) => (
-                  <button
-                    key={cert.id}
-                    onClick={() => setActiveCert(activeCert === cert.id ? null : cert.id)}
-                    className={`p-4 rounded border text-left transition-all ${
-                      activeCert === cert.id ? "border-gold bg-forest/5 shadow-inner" : "border-gray-250 bg-brand-gray hover:bg-gray-100"
-                    }`}
-                  >
-                    <div className="flex justify-between items-start mb-2">
-                      <span className="font-serif text-sm font-bold text-forest">{cert.title}</span>
-                      <BookOpen className={`w-4 h-4 text-gold ${activeCert === cert.id ? "opacity-100" : "opacity-40"}`} />
-                    </div>
-                    <span className="text-[10px] font-bold block text-[#A5771A] mb-1">{cert.authority}</span>
-                    <span className="text-[10px] text-gray-500 line-clamp-1">View target standards</span>
-
-                    {/* Expandable framework block inside button */}
-                    {activeCert === cert.id && (
-                      <div className="mt-3 pt-3 border-t border-gold/20 text-[11px] text-gray-700 leading-normal animate-fade-in">
-                        <p>{cert.framework}</p>
-                        <span className="text-[9px] text-forest font-bold inline-flex items-center gap-0.5 mt-2">
-                          Verified Official Record <Check className="w-3 h-3 text-gold" />
-                        </span>
-                      </div>
-                    )}
-                  </button>
-                ))}
-              </div>
-            </div>
+      {/* KEY BUYERS & LOGISTICS NETWORKS (Dark Green Theme) */}
+      <section id="trade-partners" className="py-24 px-4 bg-forest-dark text-white relative">
+        <div className="max-w-7xl mx-auto">
+          <ScrollReveal>
+            <KeyBuyers lang={lang} />
           </ScrollReveal>
+        </div>
+      </section>
 
+      {/* BUYER TESTIMONIALS & REGULATORY CERTIFICATIONS (White Theme) */}
+      <section className="py-24 px-4 bg-brand-gray text-brand-charcoal relative border-b border-gray-200">
+        <div className="max-w-7xl mx-auto space-y-24">
+          <ScrollReveal>
+            <BuyerTestimonials lang={lang} />
+          </ScrollReveal>
+          <div className="border-t border-gray-200/50 pt-20">
+            <ScrollReveal>
+              <CertificationsSection lang={lang} />
+            </ScrollReveal>
+          </div>
         </div>
       </section>
 
